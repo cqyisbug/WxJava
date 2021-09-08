@@ -1,14 +1,6 @@
 package me.chanjar.weixin.qidian.api.impl;
 
-import java.util.List;
-import java.util.Optional;
-
 import com.google.inject.Inject;
-
-import org.testng.Assert;
-import org.testng.annotations.Guice;
-import org.testng.annotations.Test;
-
 import lombok.extern.slf4j.Slf4j;
 import me.chanjar.weixin.common.error.WxErrorException;
 import me.chanjar.weixin.qidian.api.WxQidianService;
@@ -18,6 +10,12 @@ import me.chanjar.weixin.qidian.bean.dial.IVRDialRequest;
 import me.chanjar.weixin.qidian.bean.dial.IVRDialResponse;
 import me.chanjar.weixin.qidian.bean.dial.IVRListResponse;
 import me.chanjar.weixin.qidian.bean.dial.Ivr;
+import org.testng.Assert;
+import org.testng.annotations.Guice;
+import org.testng.annotations.Test;
+
+import java.util.List;
+import java.util.Optional;
 
 @Test
 @Guice(modules = ApiTestModule.class)

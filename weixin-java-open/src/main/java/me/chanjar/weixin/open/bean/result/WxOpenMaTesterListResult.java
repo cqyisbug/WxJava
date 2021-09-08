@@ -1,12 +1,12 @@
 package me.chanjar.weixin.open.bean.result;
 
-import java.util.List;
-
 import com.google.gson.annotations.SerializedName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import me.chanjar.weixin.open.bean.ma.WxOpenMaMember;
 import me.chanjar.weixin.open.util.json.WxOpenGsonBuilder;
+
+import java.util.List;
 
 /**
  * 微信开放平台小程序体验者列表返回.

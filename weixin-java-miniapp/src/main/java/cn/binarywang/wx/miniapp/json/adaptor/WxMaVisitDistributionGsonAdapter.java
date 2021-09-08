@@ -1,12 +1,7 @@
 package cn.binarywang.wx.miniapp.json.adaptor;
 
 import cn.binarywang.wx.miniapp.bean.analysis.WxMaVisitDistribution;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
+import com.google.gson.*;
 import me.chanjar.weixin.common.util.json.GsonHelper;
 
 import java.lang.reflect.Type;

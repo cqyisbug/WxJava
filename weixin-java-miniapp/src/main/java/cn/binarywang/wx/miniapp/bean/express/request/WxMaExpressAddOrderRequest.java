@@ -1,7 +1,7 @@
 package cn.binarywang.wx.miniapp.bean.express.request;
 
 
-import cn.binarywang.wx.miniapp.bean.express.*;
+import cn.binarywang.wx.miniapp.bean.express.WxMaExpressDelivery;
 import cn.binarywang.wx.miniapp.json.WxMaGsonBuilder;
 import com.google.gson.annotations.SerializedName;
 import lombok.AllArgsConstructor;

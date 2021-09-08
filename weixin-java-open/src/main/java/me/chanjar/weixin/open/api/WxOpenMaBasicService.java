@@ -69,6 +69,11 @@ public interface WxOpenMaBasicService {
    */
   String OPEN_MODIFY_CATEGORY = "https://api.weixin.qq.com/cgi-bin/wxopen/modifycategory";
 
+  /**
+   * 8.6 获取审核时可填写的类目信息
+   */
+  String OPEN_GET_CATEGORY_ON_AUDIT = "https://api.weixin.qq.com/wxa/get_category";
+
 
   /**
    * 1.获取小程序的信息
@@ -196,4 +201,10 @@ public interface WxOpenMaBasicService {
    * @throws WxErrorException .
    */
   WxOpenResult modifyCategory(WxFastMaCategory category) throws WxErrorException;
+
+  /**
+   * 获取审核时可填写的类目信息
+   * @return
+   */
+  WxFastMaBeenGetCategoryOnAuditResult getCategoryOnAudit();
 }

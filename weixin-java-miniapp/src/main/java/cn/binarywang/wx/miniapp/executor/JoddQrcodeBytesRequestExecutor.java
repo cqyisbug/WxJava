@@ -1,8 +1,5 @@
 package cn.binarywang.wx.miniapp.executor;
 
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-
 import cn.binarywang.wx.miniapp.bean.AbstractWxMaQrcodeWrapper;
 import jodd.http.HttpConnectionProvider;
 import jodd.http.HttpRequest;
@@ -13,6 +10,9 @@ import me.chanjar.weixin.common.enums.WxType;
 import me.chanjar.weixin.common.error.WxError;
 import me.chanjar.weixin.common.error.WxErrorException;
 import me.chanjar.weixin.common.util.http.RequestHttp;
+
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 /**
  * @author vania

@@ -1,13 +1,13 @@
 package cn.binarywang.wx.miniapp.api.impl;
 
-import java.io.File;
-
-import org.testng.annotations.*;
-
 import cn.binarywang.wx.miniapp.api.WxMaService;
 import cn.binarywang.wx.miniapp.test.ApiTestModule;
 import com.google.inject.Inject;
 import me.chanjar.weixin.common.error.WxErrorException;
+import org.testng.annotations.Guice;
+import org.testng.annotations.Test;
+
+import java.io.File;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

@@ -1,11 +1,10 @@
 package com.github.binarywang.wxpay.util;
 
-import org.testng.annotations.*;
-
 import com.google.common.base.Splitter;
+import org.testng.annotations.Test;
 
 import static com.github.binarywang.wxpay.constant.WxPayConstants.SignType.HMAC_SHA256;
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertEquals;
 
 /**
  * <pre>

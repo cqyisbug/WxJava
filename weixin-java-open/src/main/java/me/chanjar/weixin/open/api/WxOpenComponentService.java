@@ -196,6 +196,13 @@ public interface WxOpenComponentService {
   @Deprecated
   WxOpenFastMaService getWxFastMaServiceByAppid(String appid);
 
+  /**
+   * 获取指定appid的快速创建的小程序服务.
+   *
+   * @param appId app id
+   * @return . 获取小程序服务
+   */
+  WxOpenMaBasicService getWxOpenMaBasicService(String appId);
 
   /**
    * 获取指定appid的小商店服务
@@ -211,6 +218,13 @@ public interface WxOpenComponentService {
    * @return the wx open config storage
    */
   WxOpenConfigStorage getWxOpenConfigStorage();
+
+  /**
+   * Gets wx open ma batch cloud service.
+   *
+   * @return wx open ma batch cloud service
+   */
+  WxOpenMaBatchCloudService getWxOpenMaBatchCloudService();
 
   /**
    * Check signature boolean.

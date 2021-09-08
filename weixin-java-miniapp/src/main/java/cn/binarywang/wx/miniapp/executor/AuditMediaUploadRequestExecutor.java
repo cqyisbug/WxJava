@@ -1,14 +1,14 @@
 package cn.binarywang.wx.miniapp.executor;
 
-import java.io.File;
-import java.io.IOException;
-
+import cn.binarywang.wx.miniapp.bean.WxMaAuditMediaUploadResult;
+import me.chanjar.weixin.common.enums.WxType;
+import me.chanjar.weixin.common.error.WxErrorException;
 import me.chanjar.weixin.common.util.http.RequestExecutor;
 import me.chanjar.weixin.common.util.http.RequestHttp;
 import me.chanjar.weixin.common.util.http.ResponseHandler;
-import me.chanjar.weixin.common.enums.WxType;
-import me.chanjar.weixin.common.error.WxErrorException;
-import cn.binarywang.wx.miniapp.bean.WxMaAuditMediaUploadResult;
+
+import java.io.File;
+import java.io.IOException;
 
 /**
  * 小程序 提审素材上传接口

@@ -53,9 +53,13 @@ public class WxOpenComponentServiceImpl implements WxOpenComponentService {
   private static final Map<String, WxOpenMpService> WX_OPEN_MP_SERVICE_MAP = new ConcurrentHashMap<>();
   private static final Map<String, WxOpenFastMaService> WX_OPEN_FAST_MA_SERVICE_MAP = new ConcurrentHashMap<>();
 
+  private static final Map<String, WxOpenMaBasicService> WX_OPEN_MA_BASIC_SERVICE_MAP = new ConcurrentHashMap<>();
+
   private static final Map<String, WxOpenMinishopService> WX_OPEN_MINISHOP_SERVICE_MAP = new ConcurrentHashMap<>();
 
   private final WxOpenService wxOpenService;
+
+  private final WxOpenMaBatchCloudService wxOpenMaBatchCloudService = new WxOpenMaBatchCloudServiceImpl(this);
 
   @Override
   public WxOpenMpService getWxMpServiceByAppid(String appId) {
@@ -115,6 +119,21 @@ public class WxOpenComponentServiceImpl implements WxOpenComponentService {
   }
 
   @Override
+  public WxOpenMaBasicService getWxOpenMaBasicService(String appId) {
+    WxOpenMaBasicService openMaBasicService = WX_OPEN_MA_BASIC_SERVICE_MAP.get(appId);
+    if (openMaBasicService == null) {
+      synchronized (WX_OPEN_MA_BASIC_SERVICE_MAP) {
+        openMaBasicService = WX_OPEN_MA_BASIC_SERVICE_MAP.get(appId);
+        if (openMaBasicService == null) {
+          openMaBasicService = new WxOpenMaBasicServiceImpl(getWxMaServiceByAppid(appId));
+          WX_OPEN_MA_BASIC_SERVICE_MAP.put(appId, openMaBasicService);
+        }
+      }
+    }
+    return openMaBasicService;
+  }
+
+  @Override
   public WxOpenMinishopService getWxMinishopServiceByAppid(String appId) {
     WxOpenMinishopService minishopService = WX_OPEN_MINISHOP_SERVICE_MAP.get(appId);
     if (minishopService == null) {
@@ -137,6 +156,11 @@ public class WxOpenComponentServiceImpl implements WxOpenComponentService {
   @Override
   public WxOpenConfigStorage getWxOpenConfigStorage() {
     return wxOpenService.getWxOpenConfigStorage();
+  }
+
+  @Override
+  public WxOpenMaBatchCloudService getWxOpenMaBatchCloudService() {
+    return wxOpenMaBatchCloudService;
   }
 
   @Override

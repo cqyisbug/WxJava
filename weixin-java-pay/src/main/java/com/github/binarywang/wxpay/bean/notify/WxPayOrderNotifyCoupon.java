@@ -1,12 +1,12 @@
 package com.github.binarywang.wxpay.bean.notify;
 
-import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Map;
-
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import me.chanjar.weixin.common.util.json.WxGsonBuilder;
+
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 支付异步通知代金券详细.

@@ -9,10 +9,10 @@ import me.chanjar.weixin.common.session.InternalSession;
 import me.chanjar.weixin.common.session.InternalSessionManager;
 import me.chanjar.weixin.common.session.WxSessionManager;
 import me.chanjar.weixin.common.util.LogExceptionHandler;
+import me.chanjar.weixin.common.util.json.WxGsonBuilder;
 import me.chanjar.weixin.cp.bean.message.WxCpTpXmlMessage;
 import me.chanjar.weixin.cp.bean.message.WxCpXmlOutMessage;
 import me.chanjar.weixin.cp.tp.service.WxCpTpService;
-import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -73,7 +73,7 @@ public class WxCpTpMessageRouter {
     ThreadFactory namedThreadFactory = new ThreadFactoryBuilder().setNameFormat("WxCpTpMessageRouter-pool-%d").build();
     this.executorService = new ThreadPoolExecutor(DEFAULT_THREAD_POOL_SIZE, DEFAULT_THREAD_POOL_SIZE,
       0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue<>(), namedThreadFactory);
-    this.messageDuplicateChecker = new WxMessageInMemoryDuplicateChecker();
+    this.messageDuplicateChecker = new WxMessageInMemoryDuplicateChecker(30);
     this.sessionManager = wxCpTpService.getSessionManager();
     this.exceptionHandler = new LogExceptionHandler();
   }
@@ -134,7 +134,9 @@ public class WxCpTpMessageRouter {
    */
   public WxCpXmlOutMessage route(final WxCpTpXmlMessage wxMessage, final Map<String, Object> context) {
     if (isMsgDuplicated(wxMessage)) {
-      // 如果是重复消息，那么就不做处理
+      if (log.isDebugEnabled()) {
+        log.info("\n\n检测到重复消息:\n\n{}", WxGsonBuilder.create().toJson(wxMessage));
+      }
       return null;
     }
 
@@ -199,33 +201,8 @@ public class WxCpTpMessageRouter {
   }
 
   private boolean isMsgDuplicated(WxCpTpXmlMessage wxMessage) {
-    StringBuilder messageId = new StringBuilder();
-      if (wxMessage.getInfoType() != null) {
-        messageId.append(wxMessage.getInfoType())
-          .append("-").append(StringUtils.trimToEmpty(wxMessage.getSuiteId()))
-          .append("-").append(wxMessage.getTimeStamp())
-          .append("-").append(StringUtils.trimToEmpty(wxMessage.getAuthCorpId()))
-          .append("-").append(StringUtils.trimToEmpty(wxMessage.getUserID()))
-          .append("-").append(StringUtils.trimToEmpty(wxMessage.getChangeType()))
-          .append("-").append(StringUtils.trimToEmpty(wxMessage.getServiceCorpId()));
-      }
-
-      if (wxMessage.getMsgType() != null) {
-        if (wxMessage.getMsgId() != null) {
-          messageId.append(wxMessage.getMsgId())
-            .append("-").append(wxMessage.getCreateTime())
-            .append("-").append(wxMessage.getFromUserName());
-        }
-        else {
-          messageId.append(wxMessage.getMsgType())
-            .append("-").append(wxMessage.getCreateTime())
-            .append("-").append(wxMessage.getFromUserName())
-            .append("-").append(StringUtils.trimToEmpty(wxMessage.getEvent()))
-            .append("-").append(StringUtils.trimToEmpty(wxMessage.getEventKey()));
-        }
-      }
-
-    return this.messageDuplicateChecker.isDuplicate(messageId.toString());
+    // 这里简化之前的看不懂的不知道为什么要写出来的id生成
+    return this.messageDuplicateChecker.isDuplicate(wxMessage.hashCode() + "");
   }
 
   /**

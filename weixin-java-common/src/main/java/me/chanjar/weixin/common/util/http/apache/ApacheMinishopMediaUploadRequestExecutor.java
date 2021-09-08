@@ -5,7 +5,6 @@ import me.chanjar.weixin.common.bean.result.WxMinishopImageUploadResult;
 import me.chanjar.weixin.common.enums.WxType;
 import me.chanjar.weixin.common.error.WxError;
 import me.chanjar.weixin.common.error.WxErrorException;
-import me.chanjar.weixin.common.util.http.MediaUploadRequestExecutor;
 import me.chanjar.weixin.common.util.http.MinishopUploadRequestExecutor;
 import me.chanjar.weixin.common.util.http.RequestHttp;
 import org.apache.http.HttpEntity;

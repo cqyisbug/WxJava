@@ -1,15 +1,13 @@
 package me.chanjar.weixin.cp.bean.message;
 
-import java.io.Serializable;
-
 import com.thoughtworks.xstream.annotations.XStreamAlias;
-import com.thoughtworks.xstream.annotations.XStreamConverter;
 import lombok.Data;
-import me.chanjar.weixin.common.util.xml.XStreamCDataConverter;
+import me.chanjar.weixin.common.util.xml.XmlBeanUtil;
 import me.chanjar.weixin.cp.bean.outxmlbuilder.*;
 import me.chanjar.weixin.cp.config.WxCpConfigStorage;
 import me.chanjar.weixin.cp.util.crypto.WxCpCryptUtil;
-import me.chanjar.weixin.cp.util.xml.XStreamTransformer;
+
+import java.io.Serializable;
 
 /**
  * 被动回复消息.
@@ -23,18 +21,15 @@ public abstract class WxCpXmlOutMessage implements Serializable {
   private static final long serialVersionUID = 1418629839964153110L;
 
   @XStreamAlias("ToUserName")
-  @XStreamConverter(value = XStreamCDataConverter.class)
   protected String toUserName;
 
   @XStreamAlias("FromUserName")
-  @XStreamConverter(value = XStreamCDataConverter.class)
   protected String fromUserName;
 
   @XStreamAlias("CreateTime")
   protected Long createTime;
 
   @XStreamAlias("MsgType")
-  @XStreamConverter(value = XStreamCDataConverter.class)
   protected String msgType;
 
   /**
@@ -78,8 +73,9 @@ public abstract class WxCpXmlOutMessage implements Serializable {
   public static TaskCardBuilder TASK_CARD() {
     return new TaskCardBuilder();
   }
-  protected String toXml() {
-    return XStreamTransformer.toXml((Class) this.getClass(), this);
+
+  public String toXml() {
+    return XmlBeanUtil.toXml(this);
   }
 
   /**

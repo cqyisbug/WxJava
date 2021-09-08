@@ -1,24 +1,9 @@
 package me.chanjar.weixin.qidian.api.impl;
 
-import static me.chanjar.weixin.qidian.enums.WxQidianApiUrl.Other.CLEAR_QUOTA_URL;
-import static me.chanjar.weixin.qidian.enums.WxQidianApiUrl.Other.GET_CALLBACK_IP_URL;
-import static me.chanjar.weixin.qidian.enums.WxQidianApiUrl.Other.GET_CURRENT_AUTOREPLY_INFO_URL;
-import static me.chanjar.weixin.qidian.enums.WxQidianApiUrl.Other.GET_TICKET_URL;
-import static me.chanjar.weixin.qidian.enums.WxQidianApiUrl.Other.NETCHECK_URL;
-import static me.chanjar.weixin.qidian.enums.WxQidianApiUrl.Other.QRCONNECT_URL;
-import static me.chanjar.weixin.qidian.enums.WxQidianApiUrl.Other.SHORTURL_API_URL;
-
-import java.io.IOException;
-import java.util.Map;
-import java.util.concurrent.locks.Lock;
-
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-
-import org.apache.commons.lang3.StringUtils;
-
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import me.chanjar.weixin.common.api.WxConsts;
@@ -34,11 +19,7 @@ import me.chanjar.weixin.common.error.WxRuntimeException;
 import me.chanjar.weixin.common.util.DataUtils;
 import me.chanjar.weixin.common.util.RandomUtils;
 import me.chanjar.weixin.common.util.crypto.SHA1;
-import me.chanjar.weixin.common.util.http.RequestExecutor;
-import me.chanjar.weixin.common.util.http.RequestHttp;
-import me.chanjar.weixin.common.util.http.SimpleGetRequestExecutor;
-import me.chanjar.weixin.common.util.http.SimplePostRequestExecutor;
-import me.chanjar.weixin.common.util.http.URIUtil;
+import me.chanjar.weixin.common.util.http.*;
 import me.chanjar.weixin.common.util.json.GsonParser;
 import me.chanjar.weixin.common.util.json.WxGsonBuilder;
 import me.chanjar.weixin.qidian.api.WxQidianCallDataService;
@@ -47,6 +28,13 @@ import me.chanjar.weixin.qidian.api.WxQidianService;
 import me.chanjar.weixin.qidian.config.WxQidianConfigStorage;
 import me.chanjar.weixin.qidian.enums.WxQidianApiUrl;
 import me.chanjar.weixin.qidian.util.WxQidianConfigStorageHolder;
+import org.apache.commons.lang3.StringUtils;
+
+import java.io.IOException;
+import java.util.Map;
+import java.util.concurrent.locks.Lock;
+
+import static me.chanjar.weixin.qidian.enums.WxQidianApiUrl.Other.*;
 
 /**
  * 基础实现类.

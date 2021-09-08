@@ -8,8 +8,6 @@ import com.google.inject.Inject;
 import org.testng.annotations.Guice;
 import org.testng.annotations.Test;
 
-import java.net.URISyntaxException;
-
 /**
  * 测试代码，待补充完善.
  *

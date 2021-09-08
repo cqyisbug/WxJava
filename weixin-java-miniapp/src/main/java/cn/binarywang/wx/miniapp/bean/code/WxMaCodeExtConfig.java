@@ -1,13 +1,13 @@
 package cn.binarywang.wx.miniapp.bean.code;
 
-import java.io.Serializable;
-import java.util.List;
-import java.util.Map;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.io.Serializable;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 上传代码需要用到的第三方自定义的配置

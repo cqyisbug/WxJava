@@ -2,9 +2,10 @@ package cn.binarywang.wx.miniapp.api.impl;
 
 import cn.binarywang.wx.miniapp.api.WxMaService;
 import cn.binarywang.wx.miniapp.bean.shop.request.WxMaShopAccountUpdateInfoRequest;
-import cn.binarywang.wx.miniapp.bean.shop.request.WxMaShopRegisterApplySceneRequest;
-import cn.binarywang.wx.miniapp.bean.shop.request.WxMaShopRegisterFinishAccessInfoRequest;
-import cn.binarywang.wx.miniapp.bean.shop.response.*;
+import cn.binarywang.wx.miniapp.bean.shop.response.WxMaShopAccountGetBrandListResponse;
+import cn.binarywang.wx.miniapp.bean.shop.response.WxMaShopAccountGetCategoryListResponse;
+import cn.binarywang.wx.miniapp.bean.shop.response.WxMaShopAccountGetInfoResponse;
+import cn.binarywang.wx.miniapp.bean.shop.response.WxMaShopBaseResponse;
 import cn.binarywang.wx.miniapp.test.ApiTestModule;
 import com.google.inject.Inject;
 import me.chanjar.weixin.common.error.WxErrorException;

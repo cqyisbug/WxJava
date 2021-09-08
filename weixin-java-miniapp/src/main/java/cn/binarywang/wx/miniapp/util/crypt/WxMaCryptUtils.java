@@ -1,23 +1,22 @@
 package cn.binarywang.wx.miniapp.util.crypt;
 
+import cn.binarywang.wx.miniapp.config.WxMaConfig;
+import com.google.common.base.CharMatcher;
+import com.google.common.io.BaseEncoding;
+import me.chanjar.weixin.common.error.WxRuntimeException;
+import me.chanjar.weixin.common.util.crypto.PKCS7Encoder;
+import org.apache.commons.codec.binary.Base64;
+import org.bouncycastle.jce.provider.BouncyCastleProvider;
+
+import javax.crypto.Cipher;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.security.AlgorithmParameters;
 import java.security.Key;
 import java.security.Security;
 import java.util.Arrays;
-import javax.crypto.Cipher;
-import javax.crypto.spec.IvParameterSpec;
-import javax.crypto.spec.SecretKeySpec;
-
-import com.google.common.base.CharMatcher;
-import com.google.common.io.BaseEncoding;
-import me.chanjar.weixin.common.error.WxRuntimeException;
-import org.apache.commons.codec.binary.Base64;
-import org.bouncycastle.jce.provider.BouncyCastleProvider;
-
-import cn.binarywang.wx.miniapp.config.WxMaConfig;
-import me.chanjar.weixin.common.util.crypto.PKCS7Encoder;
 
 /**
  * @author <a href="https://github.com/binarywang">Binary Wang</a>

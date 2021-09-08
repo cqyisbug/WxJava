@@ -8,8 +8,6 @@ import me.chanjar.weixin.common.error.WxErrorException;
 import org.testng.annotations.Guice;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.*;
-
 @Test
 @Guice(modules = ApiTestModule.class)
 public class WxMaLinkServiceImplTest {

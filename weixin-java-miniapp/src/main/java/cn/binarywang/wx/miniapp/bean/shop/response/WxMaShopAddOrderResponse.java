@@ -2,9 +2,10 @@ package cn.binarywang.wx.miniapp.bean.shop.response;
 
 import cn.binarywang.wx.miniapp.bean.shop.WxMaShopAddOrderResult;
 import com.google.gson.annotations.SerializedName;
-import java.io.Serializable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+
+import java.io.Serializable;
 
 /**
  * @author leiin

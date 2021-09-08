@@ -1,14 +1,13 @@
 package me.chanjar.weixin.common.util;
 
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.codec.binary.Hex;
+
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
 import java.nio.charset.StandardCharsets;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
-import javax.crypto.Mac;
-import javax.crypto.spec.SecretKeySpec;
-
-import org.apache.commons.codec.binary.Hex;
-
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * <pre>

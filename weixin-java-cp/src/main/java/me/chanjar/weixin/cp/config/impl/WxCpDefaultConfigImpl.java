@@ -6,7 +6,6 @@ import me.chanjar.weixin.cp.config.WxCpConfigStorage;
 import me.chanjar.weixin.cp.constant.WxCpApiPathConsts;
 import me.chanjar.weixin.cp.util.json.WxCpGsonBuilder;
 
-import java.io.File;
 import java.io.Serializable;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -27,7 +26,7 @@ public class WxCpDefaultConfigImpl implements WxCpConfigStorage, Serializable {
    */
   protected transient Lock accessTokenLock = new ReentrantLock();
   /**
-   * The Agent id.
+   * 企业应用的id，整型。企业内部开发，可在应用的设置页面查看；第三方服务商，可通过接口 获取企业授权信息 获取该参数值.
    */
   protected volatile Integer agentId;
   /**
@@ -52,8 +51,6 @@ public class WxCpDefaultConfigImpl implements WxCpConfigStorage, Serializable {
   private volatile long jsapiTicketExpiresTime;
   private volatile String agentJsapiTicket;
   private volatile long agentJsapiTicketExpiresTime;
-
-  private volatile File tmpDirFile;
 
   private transient volatile ApacheHttpClientBuilder apacheHttpClientBuilder;
 
@@ -273,7 +270,7 @@ public class WxCpDefaultConfigImpl implements WxCpConfigStorage, Serializable {
   /**
    * Sets agent id.
    *
-   * @param agentId the agent id
+   * @param agentId 企业应用的id，整型。企业内部开发，可在应用的设置页面查看；第三方服务商，可通过接口 获取企业授权信息 获取该参数值
    */
   public void setAgentId(Integer agentId) {
     this.agentId = agentId;
@@ -352,20 +349,6 @@ public class WxCpDefaultConfigImpl implements WxCpConfigStorage, Serializable {
   @Override
   public String toString() {
     return WxCpGsonBuilder.create().toJson(this);
-  }
-
-  @Override
-  public File getTmpDirFile() {
-    return this.tmpDirFile;
-  }
-
-  /**
-   * Sets tmp dir file.
-   *
-   * @param tmpDirFile the tmp dir file
-   */
-  public void setTmpDirFile(File tmpDirFile) {
-    this.tmpDirFile = tmpDirFile;
   }
 
   @Override

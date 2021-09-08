@@ -1,5 +1,17 @@
 package me.chanjar.weixin.cp.api.impl;
 
+import com.google.inject.Inject;
+import me.chanjar.weixin.common.api.WxConsts;
+import me.chanjar.weixin.common.bean.result.WxMediaDownloadBytesResult;
+import me.chanjar.weixin.common.bean.result.WxMediaUploadResult;
+import me.chanjar.weixin.common.error.WxErrorException;
+import me.chanjar.weixin.cp.api.ApiTestModule;
+import me.chanjar.weixin.cp.api.TestConstants;
+import me.chanjar.weixin.cp.api.WxCpService;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Guice;
+import org.testng.annotations.Test;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -7,18 +19,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.testng.annotations.*;
-
-import com.google.inject.Inject;
-import me.chanjar.weixin.common.api.WxConsts;
-import me.chanjar.weixin.common.bean.result.WxMediaUploadResult;
-import me.chanjar.weixin.common.error.WxErrorException;
-import me.chanjar.weixin.cp.api.ApiTestModule;
-import me.chanjar.weixin.cp.api.TestConstants;
-import me.chanjar.weixin.cp.api.WxCpService;
-
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertTrue;
 
 /**
  * Created by Binary Wang on 2017-6-25.
@@ -73,9 +75,9 @@ public class WxCpMediaServiceImplTest {
 
   @Test(dependsOnMethods = {"testUploadMedia"}, dataProvider = "downloadMedia")
   public void testDownload(String mediaId) throws WxErrorException {
-    File file = this.wxService.getMediaService().download(mediaId);
-    assertThat(file).isNotNull();
-    System.out.println(file);
+    WxMediaDownloadBytesResult wxMediaDownloadBytesResult = this.wxService.getMediaService().download(mediaId);
+    assertThat(wxMediaDownloadBytesResult.getBytes()).isNotNull();
+    System.out.println(new String(wxMediaDownloadBytesResult.getBytes()));
   }
 
   @Test
@@ -87,8 +89,8 @@ public class WxCpMediaServiceImplTest {
 
   @Test
   public void testGetJssdkFile() throws WxErrorException {
-    File file = this.wxService.getMediaService().getJssdkFile("....");
-    assertThat(file).isNotNull();
-    System.out.println(file);
+    WxMediaDownloadBytesResult wxMediaDownloadBytesResult = this.wxService.getMediaService().getJssdkFile("....");
+    assertThat(wxMediaDownloadBytesResult.getBytes()).isNotNull();
+    System.out.println(new String(wxMediaDownloadBytesResult.getBytes()));
   }
 }

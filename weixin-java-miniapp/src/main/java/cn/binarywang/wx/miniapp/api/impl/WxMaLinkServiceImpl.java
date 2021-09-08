@@ -7,7 +7,6 @@ import com.google.gson.JsonObject;
 import lombok.AllArgsConstructor;
 import me.chanjar.weixin.common.error.WxErrorException;
 import me.chanjar.weixin.common.util.json.GsonParser;
-import me.chanjar.weixin.common.util.json.WxGsonBuilder;
 
 import static cn.binarywang.wx.miniapp.constant.WxMaApiUrlConstants.Link.GENERATE_URLLINK_URL;
 

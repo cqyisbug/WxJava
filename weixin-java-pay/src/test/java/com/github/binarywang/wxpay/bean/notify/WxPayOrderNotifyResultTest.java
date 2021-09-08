@@ -2,8 +2,8 @@ package com.github.binarywang.wxpay.bean.notify;
 
 import com.github.binarywang.wxpay.bean.result.BaseWxPayResult;
 import com.github.binarywang.wxpay.util.XmlConfig;
-import org.testng.*;
-import org.testng.annotations.*;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 /**
  * <pre>

@@ -141,6 +141,12 @@ public class WxOpenFastMaServiceImpl extends WxMaServiceImpl implements WxOpenFa
     return WxOpenGsonBuilder.create().fromJson(response, WxOpenResult.class);
   }
 
+  @Override
+  public WxFastMaBeenGetCategoryOnAuditResult getCategoryOnAudit() {
+    String response = get(OPEN_GET_CATEGORY_ON_AUDIT,"");
+    return WxOpenGsonBuilder.create().fromJson(response, WxFastMaBeenGetCategoryOnAuditResult.class);
+  }
+
   private JsonArray toJsonArray(List<String> strList) {
     JsonArray jsonArray = new JsonArray();
     if (strList != null && !strList.isEmpty()) {

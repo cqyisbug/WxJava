@@ -21,19 +21,18 @@
     <module>wx-java-pay-spring-boot-starter</module>
     <module>wx-java-open-spring-boot-starter</module>
     <module>wx-java-qidian-spring-boot-starter</module>
+    <module>wx-java-cp-spring-boot-starter</module>
+    <module>wx-java-base-spring-boot-starter</module>
   </modules>
 
   <dependencies>
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-autoconfigure</artifactId>
-      <version>${spring.boot.version}</version>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-configuration-processor</artifactId>
-      <version>${spring.boot.version}</version>
-      <optional>true</optional>
     </dependency>
     <dependency>
       <groupId>org.projectlombok</groupId>

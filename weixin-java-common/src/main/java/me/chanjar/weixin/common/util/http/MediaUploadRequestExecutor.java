@@ -1,14 +1,14 @@
 package me.chanjar.weixin.common.util.http;
 
-import java.io.File;
-import java.io.IOException;
-
-import me.chanjar.weixin.common.enums.WxType;
 import me.chanjar.weixin.common.bean.result.WxMediaUploadResult;
+import me.chanjar.weixin.common.enums.WxType;
 import me.chanjar.weixin.common.error.WxErrorException;
 import me.chanjar.weixin.common.util.http.apache.ApacheMediaUploadRequestExecutor;
 import me.chanjar.weixin.common.util.http.jodd.JoddHttpMediaUploadRequestExecutor;
 import me.chanjar.weixin.common.util.http.okhttp.OkHttpMediaUploadRequestExecutor;
+
+import java.io.File;
+import java.io.IOException;
 
 /**
  * 上传媒体文件请求执行器.

@@ -1,10 +1,5 @@
 package cn.binarywang.wx.miniapp.api.impl;
 
-import static cn.binarywang.wx.miniapp.constant.WxMaApiUrlConstants.Shop.Order.ORDER_ADD;
-import static cn.binarywang.wx.miniapp.constant.WxMaApiUrlConstants.Shop.Order.ORDER_CHECK_SCENE;
-import static cn.binarywang.wx.miniapp.constant.WxMaApiUrlConstants.Shop.Order.ORDER_GET;
-import static cn.binarywang.wx.miniapp.constant.WxMaApiUrlConstants.Shop.Order.ORDER_PAY;
-
 import cn.binarywang.wx.miniapp.api.WxMaService;
 import cn.binarywang.wx.miniapp.api.WxMaShopOrderService;
 import cn.binarywang.wx.miniapp.bean.shop.WxMaShopOrderInfo;
@@ -21,6 +16,8 @@ import me.chanjar.weixin.common.error.WxError;
 import me.chanjar.weixin.common.error.WxErrorException;
 import me.chanjar.weixin.common.util.json.GsonHelper;
 import me.chanjar.weixin.common.util.json.GsonParser;
+
+import static cn.binarywang.wx.miniapp.constant.WxMaApiUrlConstants.Shop.Order.*;
 
 /**
  * @author boris

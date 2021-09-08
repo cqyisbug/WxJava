@@ -4,7 +4,6 @@ import me.chanjar.weixin.common.bean.WxAccessToken;
 import me.chanjar.weixin.common.util.http.apache.ApacheHttpClientBuilder;
 import me.chanjar.weixin.cp.bean.WxCpProviderToken;
 
-import java.io.File;
 import java.util.concurrent.locks.Lock;
 
 /**
@@ -160,6 +159,38 @@ public interface WxCpTpConfigStorage {
    * @return the access token
    */
   String getAccessToken(String authCorpId);
+
+  /**
+   * 获取企业永久授权码
+   *
+   * @param authCorpId the auth corp id
+   * @return string permanent code
+   */
+  String getPermanentCode(String authCorpId);
+
+  /**
+   * 更新企业永久授权码
+   *
+   * @param authCorpId    the auth corp id
+   * @param permanentCode the permanent code
+   */
+  void updatePermanentCode(String authCorpId, String permanentCode);
+
+  /**
+   * Gets agent id.
+   *
+   * @param authCorpId the auth corp id
+   * @return 企业应用的id，整型。企业内部开发，可在应用的设置页面查看；第三方服务商，可通过接口 获取企业授权信息 获取该参数值
+   */
+  Integer getAgentId(String authCorpId);
+
+  /**
+   * Update agent id.
+   *
+   * @param authCorpId the auth corp id
+   * @param agentId    企业应用的id，整型。企业内部开发，可在应用的设置页面查看；第三方服务商，可通过接口 获取企业授权信息 获取该参数值
+   */
+  void updateAgentId(String authCorpId, Integer agentId);
 
   /**
    * Gets access token entity.
@@ -335,15 +366,6 @@ public interface WxCpTpConfigStorage {
    * @return the boolean
    */
   boolean autoRefreshToken();
-
-  /**
-   * Gets tmp dir file.
-   *
-   * @return the tmp dir file
-   */
-// 毫无相关性的代码
-  @Deprecated
-  File getTmpDirFile();
 
   /**
    * Gets provider access token lock.

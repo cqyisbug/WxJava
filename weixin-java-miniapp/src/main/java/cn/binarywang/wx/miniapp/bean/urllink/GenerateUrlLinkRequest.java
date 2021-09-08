@@ -1,6 +1,5 @@
 package cn.binarywang.wx.miniapp.bean.urllink;
 
-import cn.binarywang.wx.miniapp.json.WxMaGsonBuilder;
 import com.google.gson.annotations.SerializedName;
 import lombok.Builder;
 import lombok.Data;

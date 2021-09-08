@@ -1,12 +1,7 @@
 package me.chanjar.weixin.common.service;
 
+import me.chanjar.weixin.common.bean.ocr.*;
 import me.chanjar.weixin.common.error.WxErrorException;
-import me.chanjar.weixin.common.bean.ocr.WxOcrBankCardResult;
-import me.chanjar.weixin.common.bean.ocr.WxOcrBizLicenseResult;
-import me.chanjar.weixin.common.bean.ocr.WxOcrCommResult;
-import me.chanjar.weixin.common.bean.ocr.WxOcrDrivingLicenseResult;
-import me.chanjar.weixin.common.bean.ocr.WxOcrDrivingResult;
-import me.chanjar.weixin.common.bean.ocr.WxOcrIdCardResult;
 
 import java.io.File;
 

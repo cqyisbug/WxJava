@@ -1,6 +1,6 @@
 package cn.binarywang.wx.miniapp.bean;
 
-import org.testng.annotations.*;
+import org.testng.annotations.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

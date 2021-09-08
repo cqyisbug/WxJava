@@ -1,17 +1,10 @@
 package com.github.binarywang.wxpay.service.impl;
 
-import com.github.binarywang.wxpay.bean.ecommerce.CombineTransactionsRequest;
-import com.github.binarywang.wxpay.bean.ecommerce.PartnerTransactionsQueryRequest;
-import com.github.binarywang.wxpay.bean.ecommerce.PartnerTransactionsResult;
-import com.github.binarywang.wxpay.bean.ecommerce.ProfitSharingReceiverRequest;
-import com.github.binarywang.wxpay.bean.ecommerce.ProfitSharingReceiverResult;
-import com.github.binarywang.wxpay.bean.ecommerce.SignatureHeader;
-import com.github.binarywang.wxpay.bean.ecommerce.TransactionsResult;
+import com.github.binarywang.wxpay.bean.ecommerce.*;
 import com.github.binarywang.wxpay.bean.ecommerce.enums.TradeTypeEnum;
 import com.github.binarywang.wxpay.exception.WxPayException;
 import com.github.binarywang.wxpay.service.WxPayService;
 import com.github.binarywang.wxpay.testbase.ApiTestModule;
-import com.google.gson.GsonBuilder;
 import com.google.inject.Inject;
 import lombok.extern.slf4j.Slf4j;
 import me.chanjar.weixin.common.util.RandomUtils;

@@ -3,23 +3,7 @@ package me.chanjar.weixin.cp.api;
 import lombok.NonNull;
 import me.chanjar.weixin.common.error.WxErrorException;
 import me.chanjar.weixin.cp.bean.WxCpBaseResp;
-import me.chanjar.weixin.cp.bean.external.WxCpContactWayInfo;
-import me.chanjar.weixin.cp.bean.external.WxCpContactWayResult;
-import me.chanjar.weixin.cp.bean.external.WxCpMsgTemplate;
-import me.chanjar.weixin.cp.bean.external.WxCpMsgTemplateAddResult;
-import me.chanjar.weixin.cp.bean.external.WxCpUpdateRemarkRequest;
-import me.chanjar.weixin.cp.bean.external.WxCpUserExternalGroupChatInfo;
-import me.chanjar.weixin.cp.bean.external.WxCpUserExternalGroupChatList;
-import me.chanjar.weixin.cp.bean.external.WxCpUserExternalGroupChatStatistic;
-import me.chanjar.weixin.cp.bean.external.WxCpUserExternalGroupChatTransferResp;
-import me.chanjar.weixin.cp.bean.external.WxCpUserExternalTagGroupInfo;
-import me.chanjar.weixin.cp.bean.external.WxCpUserExternalTagGroupList;
-import me.chanjar.weixin.cp.bean.external.WxCpUserExternalUnassignList;
-import me.chanjar.weixin.cp.bean.external.WxCpUserExternalUserBehaviorStatistic;
-import me.chanjar.weixin.cp.bean.external.WxCpUserTransferCustomerReq;
-import me.chanjar.weixin.cp.bean.external.WxCpUserTransferCustomerResp;
-import me.chanjar.weixin.cp.bean.external.WxCpUserTransferResultResp;
-import me.chanjar.weixin.cp.bean.external.WxCpWelcomeMsg;
+import me.chanjar.weixin.cp.bean.external.*;
 import me.chanjar.weixin.cp.bean.external.contact.WxCpExternalContactBatchInfo;
 import me.chanjar.weixin.cp.bean.external.contact.WxCpExternalContactInfo;
 import org.jetbrains.annotations.NotNull;
@@ -122,13 +106,13 @@ public interface WxCpExternalContactService {
    * 第三方应用调用时，返回的跟进人follow_user仅包含应用可见范围之内的成员。
    * </pre>
    *
-   * @param userId 外部联系人的userid
+   * @param externalUserId 外部联系人的userid
    * @return . external contact
    * @throws WxErrorException the wx error exception
    * @deprecated 建议使用 {@link #getContactDetail(String)}
    */
   @Deprecated
-  WxCpExternalContactInfo getExternalContact(String userId) throws WxErrorException;
+  WxCpExternalContactInfo getExternalContact(String externalUserId) throws WxErrorException;
 
   /**
    * 获取客户详情.
@@ -145,17 +129,17 @@ public interface WxCpExternalContactService {
    * 第三方/自建应用调用时，返回的跟进人follow_user仅包含应用可见范围之内的成员。
    * </pre>
    *
-   * @param userId 外部联系人的userid，注意不是企业成员的帐号
+   * @param externalUserId 外部联系人的userid，注意不是企业成员的帐号
    * @return . contact detail
    * @throws WxErrorException .
    */
-  WxCpExternalContactInfo getContactDetail(String userId) throws WxErrorException;
+  WxCpExternalContactInfo getContactDetail(String externalUserId) throws WxErrorException;
 
   /**
    * 企业和服务商可通过此接口，将微信外部联系人的userid转为微信openid，用于调用支付相关接口。暂不支持企业微信外部联系人（ExternalUserid为wo开头）的userid转openid。
    *
    * @param externalUserid 微信外部联系人的userid
-   * @return 该企业的外部联系人openid
+   * @return 该企业的外部联系人openid string
    * @throws WxErrorException .
    */
   String convertToOpenid(String externalUserid) throws WxErrorException;
@@ -198,7 +182,7 @@ public interface WxCpExternalContactService {
    * 第三方/自建应用调用时，返回的跟进人follow_user仅包含应用可见范围之内的成员。
    * </pre>
    *
-   * @param userIdList 企业成员的userid列表，注意不是外部联系人的帐号
+   * @param userIdList 企业成员的userid，注意不是外部联系人的帐号
    * @param cursor     the cursor
    * @param limit      the  limit
    * @return wx cp user external contact batch info
@@ -312,7 +296,7 @@ public interface WxCpExternalContactService {
    * @param handOverUserid 原添加成员的userid
    * @param takeOverUserid 接替成员的userid
    * @param cursor         分页查询的cursor，每个分页返回的数据不会超过1000条；不填或为空表示获取第一个分页；
-   * @return 客户转接接口实体
+   * @return 客户转接接口实体 wx cp user transfer result resp
    * @throws WxErrorException the wx error exception
    */
   WxCpUserTransferResultResp transferResult(@NotNull String handOverUserid, @NotNull String takeOverUserid, String cursor) throws WxErrorException;
@@ -352,7 +336,7 @@ public interface WxCpExternalContactService {
    * @param handOverUserid 原添加成员的userid
    * @param takeOverUserid 接替成员的userid
    * @param cursor         分页查询的cursor，每个分页返回的数据不会超过1000条；不填或为空表示获取第一个分页；
-   * @return 客户转接接口实体
+   * @return 客户转接接口实体 wx cp user transfer result resp
    * @throws WxErrorException the wx error exception
    */
   WxCpUserTransferResultResp resignedTransferResult(@NotNull String handOverUserid, @NotNull String takeOverUserid, String cursor) throws WxErrorException;
@@ -361,27 +345,6 @@ public interface WxCpExternalContactService {
    * <pre>
    * 该接口用于获取配置过客户群管理的客户群列表。
    * 企业需要使用“客户联系”secret或配置到“可调用应用”列表中的自建应用secret所获取的accesstoken来调用（accesstoken如何获取？）。
-   * 暂不支持第三方调用。
-   * 微信文档：https://work.weixin.qq.com/api/doc/90000/90135/92119
-   * </pre>
-   *
-   * @param pageIndex the page index
-   * @param pageSize  the page size
-   * @param status    the status
-   * @param userIds   the user ids
-   * @param partyIds  the party ids
-   * @return the wx cp user external group chat list
-   * @throws WxErrorException the wx error exception
-   * @deprecated 请使用 {@link WxCpExternalContactService#listGroupChat(Integer, String, int, String[])}
-   */
-  @Deprecated
-  WxCpUserExternalGroupChatList listGroupChat(Integer pageIndex, Integer pageSize, int status, String[] userIds, String[] partyIds) throws WxErrorException;
-
-  /**
-   * <pre>
-   * 该接口用于获取配置过客户群管理的客户群列表。
-   * 企业需要使用“客户联系”secret或配置到“可调用应用”列表中的自建应用secret所获取的accesstoken来调用（accesstoken如何获取？）。
-   * 暂不支持第三方调用。
    * 微信文档：https://work.weixin.qq.com/api/doc/90000/90135/92119
    * </pre>
    *
@@ -402,7 +365,8 @@ public interface WxCpExternalContactService {
    * 微信文档：https://work.weixin.qq.com/api/doc/90000/90135/92122
    * </pre>
    *
-   * @param chatId the chat id
+   * @param chatId   the chat id
+   * @param needName the need name
    * @return group chat
    * @throws WxErrorException the wx error exception
    */
@@ -429,7 +393,7 @@ public interface WxCpExternalContactService {
    *
    * @param chatIds  需要转群主的客户群ID列表。取值范围： 1 ~ 100
    * @param newOwner 新群主ID
-   * @return 分配结果，主要是分配失败的群列表
+   * @return 分配结果 ，主要是分配失败的群列表
    * @throws WxErrorException the wx error exception
    */
   WxCpUserExternalGroupChatTransferResp transferGroupChat(String[] chatIds, String newOwner) throws WxErrorException;
@@ -482,11 +446,38 @@ public interface WxCpExternalContactService {
    * <p>
    * 文档地址：https://work.weixin.qq.com/api/doc/90000/90135/92135
    *
-   * @param wxCpMsgTemplate the wx cp msg template
+   * @param wxCpUserExternalMsgTemplate the wx cp msg template
    * @return the wx cp msg template add result
    * @throws WxErrorException the wx error exception
    */
-  WxCpMsgTemplateAddResult addMsgTemplate(WxCpMsgTemplate wxCpMsgTemplate) throws WxErrorException;
+  WxCpMsgTemplateAddResult addMsgTemplate(WxCpUserExternalMsgTemplate wxCpUserExternalMsgTemplate) throws WxErrorException;
+
+  /**
+   * 获取群发记录列表
+   *
+   * @param wxCpUserExternalContactGroupMsgListV2Request the wx cp user external contact group msg list v 2 request
+   * @return wx cp user external contact group msg list v 2 result
+   * @throws WxErrorException the wx error exception
+   */
+  WxCpUserExternalContactGroupMsgListV2Result groupMsgListV2(WxCpUserExternalContactGroupMsgListV2Request wxCpUserExternalContactGroupMsgListV2Request) throws WxErrorException;
+
+  /**
+   * 获取群发成员发送任务列表
+   *
+   * @param wxCpUserExternalContactGroupMsgTaskRequest the wx cp user external contact group msg task request
+   * @return wx cp user external contact group msg task result
+   * @throws WxErrorException the wx error exception
+   */
+  WxCpUserExternalContactGroupMsgTaskResult groupMsgTask(WxCpUserExternalContactGroupMsgTaskRequest wxCpUserExternalContactGroupMsgTaskRequest) throws WxErrorException;
+
+  /**
+   * 获取企业群发成员执行结果
+   *
+   * @param wxCpUserExternalContactGroupMsgSendRequest the wx cp user external contact group msg send request
+   * @return wx cp user external contact group msg send result
+   * @throws WxErrorException the wx error exception
+   */
+  WxCpUserExternalContactGroupMsgSendResult groupMsgSendResult(WxCpUserExternalContactGroupMsgSendRequest wxCpUserExternalContactGroupMsgSendRequest) throws WxErrorException;
 
   /**
    * 发送新客户欢迎语

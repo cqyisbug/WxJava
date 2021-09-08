@@ -1,17 +1,12 @@
 package cn.binarywang.wx.miniapp.bean;
 
+import cn.binarywang.wx.miniapp.json.WxMaGsonBuilder;
+import cn.binarywang.wx.miniapp.json.adaptor.WxMaUniformMessageGsonAdapter;
+import lombok.*;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
-import cn.binarywang.wx.miniapp.json.WxMaGsonBuilder;
-import cn.binarywang.wx.miniapp.json.adaptor.WxMaUniformMessageGsonAdapter;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 /**
  * 模板消息.

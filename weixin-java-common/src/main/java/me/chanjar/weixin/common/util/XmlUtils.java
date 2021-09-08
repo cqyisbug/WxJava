@@ -3,7 +3,6 @@ package me.chanjar.weixin.common.util;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
-import me.chanjar.weixin.common.error.WxErrorException;
 import me.chanjar.weixin.common.error.WxRuntimeException;
 import org.dom4j.*;
 import org.dom4j.io.SAXReader;

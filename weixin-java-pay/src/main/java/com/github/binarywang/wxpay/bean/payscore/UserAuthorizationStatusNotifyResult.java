@@ -1,11 +1,10 @@
 package com.github.binarywang.wxpay.bean.payscore;
 
-import java.io.Serializable;
-
 import com.google.gson.annotations.SerializedName;
-
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.io.Serializable;
 
 /**
  * 授权/解除授权服务回调通知结果
@@ -35,7 +34,7 @@ public class UserAuthorizationStatusNotifyResult implements Serializable {
    */
   @SerializedName(value = "appid")
   private String appid;
-  
+
   /**
    * <pre>
    * 字段名：商户号
@@ -49,7 +48,7 @@ public class UserAuthorizationStatusNotifyResult implements Serializable {
    */
   @SerializedName(value = "mchid")
   private String mchid;
-  
+
   /**
    * <pre>
    * 字段名：商户签约单号
@@ -63,7 +62,7 @@ public class UserAuthorizationStatusNotifyResult implements Serializable {
    */
   @SerializedName(value = "out_request_no")
   private String outRequestNo;
-  
+
   /**
    * <pre>
    * 字段名：服务ID
@@ -77,7 +76,7 @@ public class UserAuthorizationStatusNotifyResult implements Serializable {
    */
   @SerializedName(value = "service_id")
   private String serviceId;
-  
+
   /**
    * <pre>
    * 字段名：用户标识
@@ -91,7 +90,7 @@ public class UserAuthorizationStatusNotifyResult implements Serializable {
    */
   @SerializedName(value = "openid")
   private String openid;
-  
+
   /**
    * <pre>
    * 字段名：回调状态
@@ -99,14 +98,14 @@ public class UserAuthorizationStatusNotifyResult implements Serializable {
    * 是否必填：否
    * 类型：	string[1,32]
    * 描述：
-   *  1、USER_OPEN_SERVICE：授权成功 
+   *  1、USER_OPEN_SERVICE：授权成功
    *  2、USER_CLOSE_SERVICE：解除授权成功
    * 示例值：USER_OPEN_SERVICE
    * </pre>
    */
   @SerializedName(value = "user_service_status")
   private String userServiceStatus;
-  
+
   /**
    * <pre>
    * 字段名：服务授权/解除授权时间
@@ -120,7 +119,7 @@ public class UserAuthorizationStatusNotifyResult implements Serializable {
    */
   @SerializedName(value = "openorclose_time")
   private String openOrCloseTime;
-  
+
   /**
    * <pre>
    * 字段名：授权协议号

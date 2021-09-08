@@ -1,8 +1,8 @@
 package com.github.binarywang.wxpay.v3;
 
-import java.io.IOException;
-
 import org.apache.http.client.methods.HttpRequestWrapper;
+
+import java.io.IOException;
 
 public interface Credentials {
 

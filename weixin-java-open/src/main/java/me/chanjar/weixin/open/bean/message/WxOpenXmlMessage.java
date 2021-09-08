@@ -6,11 +6,11 @@ import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import me.chanjar.weixin.common.error.WxRuntimeException;
 import me.chanjar.weixin.common.util.xml.XStreamCDataConverter;
+import me.chanjar.weixin.common.util.xml.XmlBeanUtil;
 import me.chanjar.weixin.mp.bean.message.WxMpXmlMessage;
 import me.chanjar.weixin.mp.bean.message.WxMpXmlOutMessage;
 import me.chanjar.weixin.open.api.WxOpenConfigStorage;
 import me.chanjar.weixin.open.util.WxOpenCryptUtil;
-import me.chanjar.weixin.open.util.xml.XStreamTransformer;
 import org.apache.commons.io.IOUtils;
 
 import java.io.IOException;
@@ -28,33 +28,27 @@ public class WxOpenXmlMessage implements Serializable {
   private static final long serialVersionUID = -5641769554709507771L;
 
   @XStreamAlias("AppId")
-  @XStreamConverter(value = XStreamCDataConverter.class)
   private String appId;
 
   @XStreamAlias("CreateTime")
   private Long createTime;
 
   @XStreamAlias("InfoType")
-  @XStreamConverter(value = XStreamCDataConverter.class)
   private String infoType;
 
   @XStreamAlias("ComponentVerifyTicket")
-  @XStreamConverter(value = XStreamCDataConverter.class)
   private String componentVerifyTicket;
 
   @XStreamAlias("AuthorizerAppid")
-  @XStreamConverter(value = XStreamCDataConverter.class)
   private String authorizerAppid;
 
   @XStreamAlias("AuthorizationCode")
-  @XStreamConverter(value = XStreamCDataConverter.class)
   private String authorizationCode;
 
   @XStreamAlias("AuthorizationCodeExpiredTime")
   private Long authorizationCodeExpiredTime;
 
   @XStreamAlias("PreAuthCode")
-  @XStreamConverter(value = XStreamCDataConverter.class)
   private String preAuthCode;
 
   // 以下为快速创建小程序接口推送的的信息
@@ -69,7 +63,6 @@ public class WxOpenXmlMessage implements Serializable {
   private String authCode;
 
   @XStreamAlias("msg")
-  @XStreamConverter(value = XStreamCDataConverter.class)
   private String msg;
 
   @XStreamAlias("info")
@@ -111,13 +104,11 @@ public class WxOpenXmlMessage implements Serializable {
   }
 
   public static WxOpenXmlMessage fromXml(String xml) {
-    //修改微信变态的消息内容格式，方便解析
-    xml = xml.replace("</PicList><PicList>", "");
-    return XStreamTransformer.fromXml(WxOpenXmlMessage.class, xml);
+    return XmlBeanUtil.toBean(xml, WxOpenXmlMessage.class);
   }
 
   public static WxOpenXmlMessage fromXml(InputStream is) {
-    return XStreamTransformer.fromXml(WxOpenXmlMessage.class, is);
+    return XmlBeanUtil.toBean(is, WxOpenXmlMessage.class);
   }
 
   /**

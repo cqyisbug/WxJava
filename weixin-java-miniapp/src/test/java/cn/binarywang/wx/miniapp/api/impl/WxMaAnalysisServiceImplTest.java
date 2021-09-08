@@ -2,12 +2,7 @@ package cn.binarywang.wx.miniapp.api.impl;
 
 import cn.binarywang.wx.miniapp.api.WxMaAnalysisService;
 import cn.binarywang.wx.miniapp.api.WxMaService;
-import cn.binarywang.wx.miniapp.bean.analysis.WxMaRetainInfo;
-import cn.binarywang.wx.miniapp.bean.analysis.WxMaSummaryTrend;
-import cn.binarywang.wx.miniapp.bean.analysis.WxMaUserPortrait;
-import cn.binarywang.wx.miniapp.bean.analysis.WxMaVisitDistribution;
-import cn.binarywang.wx.miniapp.bean.analysis.WxMaVisitPage;
-import cn.binarywang.wx.miniapp.bean.analysis.WxMaVisitTrend;
+import cn.binarywang.wx.miniapp.bean.analysis.*;
 import cn.binarywang.wx.miniapp.test.ApiTestModule;
 import com.google.inject.Inject;
 import org.apache.commons.lang3.time.DateFormatUtils;

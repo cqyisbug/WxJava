@@ -1,13 +1,13 @@
 package cn.binarywang.wx.miniapp.bean;
 
-import java.io.Serializable;
-import java.util.List;
-
 import cn.binarywang.wx.miniapp.json.WxMaGsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 import lombok.Data;
 import me.chanjar.weixin.common.util.json.GsonParser;
+
+import java.io.Serializable;
+import java.util.List;
 
 /**
  * 微信运动步数信息.

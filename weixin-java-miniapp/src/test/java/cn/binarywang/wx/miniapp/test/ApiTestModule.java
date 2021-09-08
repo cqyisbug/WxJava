@@ -1,17 +1,16 @@
 package cn.binarywang.wx.miniapp.test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.concurrent.locks.ReentrantLock;
-
-import me.chanjar.weixin.common.error.WxRuntimeException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import cn.binarywang.wx.miniapp.api.WxMaService;
 import cn.binarywang.wx.miniapp.config.WxMaConfig;
 import com.google.inject.Binder;
 import com.google.inject.Module;
+import me.chanjar.weixin.common.error.WxRuntimeException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * @author <a href="https://github.com/binarywang">Binary Wang</a>

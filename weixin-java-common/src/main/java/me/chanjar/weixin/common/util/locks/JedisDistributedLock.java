@@ -1,26 +1,26 @@
 package me.chanjar.weixin.common.util.locks;
 
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.locks.Condition;
-import java.util.concurrent.locks.Lock;
-
 import com.github.jedis.lock.JedisLock;
 import me.chanjar.weixin.common.error.WxRuntimeException;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.util.Pool;
 
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
+
 /**
  * JedisPool 分布式锁
- * @deprecated 不建议使用jedis-lock这个过期组件，不可靠
  *
  * @author <a href="https://github.com/007gzs">007</a>
+ * @deprecated 不建议使用jedis-lock这个过期组件，不可靠
  */
 @Deprecated
 public class JedisDistributedLock implements Lock {
   private final Pool<Jedis> jedisPool;
   private final JedisLock lock;
 
-  public JedisDistributedLock(Pool<Jedis> jedisPool, String key){
+  public JedisDistributedLock(Pool<Jedis> jedisPool, String key) {
     this.jedisPool = jedisPool;
     this.lock = new JedisLock(key);
   }

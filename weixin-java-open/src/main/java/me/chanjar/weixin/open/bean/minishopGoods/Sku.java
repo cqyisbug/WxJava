@@ -5,7 +5,6 @@ import com.google.gson.JsonObject;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
-import java.util.Arrays;
 import java.util.List;
 
 @Data

@@ -10,14 +10,13 @@ import lombok.experimental.Accessors;
 import me.chanjar.weixin.common.util.json.WxGsonBuilder;
 import me.chanjar.weixin.cp.bean.article.MpnewsArticle;
 import me.chanjar.weixin.cp.bean.article.NewArticle;
+import me.chanjar.weixin.cp.constant.WxCpConsts;
 import org.apache.commons.lang3.ArrayUtils;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
-import static me.chanjar.weixin.cp.constant.WxCpConsts.LinkedCorpMsgType.*;
 
 /**
  * 互联企业消息.
@@ -133,7 +132,11 @@ public class WxCpLinkedCorpMessage implements Serializable {
   }
 
   private void handleMsgType(JsonObject messageJson) {
-    switch (this.getMsgType()) {
+    WxCpConsts.LinkedCorpMsgType linkedCorpMsgType = WxCpConsts.LinkedCorpMsgType.getType(this.getMsgType());
+    if (linkedCorpMsgType == null) {
+      return;
+    }
+    switch (linkedCorpMsgType) {
       case TEXT: {
         JsonObject text = new JsonObject();
         text.addProperty("content", this.getContent());

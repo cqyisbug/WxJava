@@ -13,6 +13,14 @@ import com.thoughtworks.xstream.security.NoTypePermission;
 import com.thoughtworks.xstream.security.WildcardTypePermission;
 
 import java.io.Writer;
+import java.lang.reflect.Field;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Consumer;
 
 /**
  * The type X stream initializer.
@@ -20,6 +28,9 @@ import java.io.Writer;
  * @author Daniel Qian
  */
 public class XStreamInitializer {
+
+  private static final Map<String, XStream> X_STREAM_MAP = new ConcurrentHashMap<>();
+
   private static final XppDriver XPP_DRIVER = new XppDriver() {
     @Override
     public HierarchicalStreamWriter createWriter(Writer out) {
@@ -37,7 +48,7 @@ public class XStreamInitializer {
             writer.write(text);
           } else if (text.startsWith(PREFIX_MEDIA_ID) && text.endsWith(SUFFIX_MEDIA_ID)) {
             writer.write(text);
-          } else if (text.startsWith(PREFIX_REPLACE_NAME) && text.endsWith(SUFFIX_REPLACE_NAME)){
+          } else if (text.startsWith(PREFIX_REPLACE_NAME) && text.endsWith(SUFFIX_REPLACE_NAME)) {
             writer.write(text);
           } else {
             super.writeText(writer, text);
@@ -54,12 +65,75 @@ public class XStreamInitializer {
     }
   };
 
+
+  public static XStream getInstance(Class<?> clz) {
+    return getInstance(clz, null);
+  }
+
+  public static XStream getInstance(Class<?> clz, Consumer<XStream> consumer) {
+    return X_STREAM_MAP.computeIfAbsent(clz.getName(), key -> {
+      XStream xStream = getInstance(consumer);
+      Set<Class<?>> classSet = new HashSet<>();
+      getRelatedClasses(clz, classSet);
+      for (Class<?> aClass : classSet) {
+        xStream.processAnnotations(aClass);
+      }
+      return xStream;
+    });
+  }
+
+  private static void getRelatedClasses(Class<?> clz, Set<Class<?>> classSet) {
+    classSet.add(clz);
+    for (Field declaredField : clz.getDeclaredFields()) {
+      try {
+        if (declaredField.getGenericType() instanceof ParameterizedType) {
+          Type[] types = ((ParameterizedType) declaredField.getGenericType()).getActualTypeArguments();
+          for (Type type : types) {
+            String fieldGenericTypeClassName = type.getTypeName();
+            if (!fieldGenericTypeClassName.startsWith("java.lang")) {
+              Class<?> fieldGenericTypeClass = Class.forName(type.getTypeName());
+              if (!fieldGenericTypeClass.isPrimitive()) {
+                getRelatedClasses(fieldGenericTypeClass, classSet);
+              }
+            }
+          }
+        } else {
+          String fieldGenericTypeClassName = declaredField.getGenericType().getTypeName();
+          if (!fieldGenericTypeClassName.startsWith("java.lang")) {
+            Class<?> fieldGenericTypeClass = Class.forName(declaredField.getGenericType().getTypeName());
+            if (!fieldGenericTypeClass.isPrimitive()) {
+              getRelatedClasses(fieldGenericTypeClass, classSet);
+            }
+          }
+        }
+
+        String fieldGenericTypeClassName = declaredField.getGenericType().getTypeName();
+        if (!fieldGenericTypeClassName.startsWith("java.lang")) {
+          Class<?> fieldGenericTypeClass = Class.forName(declaredField.getGenericType().getTypeName());
+          if (!fieldGenericTypeClass.isPrimitive()) {
+            getRelatedClasses(fieldGenericTypeClass, classSet);
+          }
+        }
+      } catch (ClassNotFoundException ignore) {
+
+      }
+    }
+    Class<?> tmp = clz;
+    while (tmp.getSuperclass() != null && !tmp.getSuperclass().equals(Object.class)) {
+      if (!tmp.getSuperclass().isPrimitive()) {
+        classSet.add(tmp.getSuperclass());
+      }
+      tmp = tmp.getSuperclass();
+    }
+  }
+
+
   /**
    * Gets instance.
    *
    * @return the instance
    */
-  public static XStream getInstance() {
+  public static XStream getInstance(Consumer<XStream> consumer) {
     XStream xstream = new XStream(new PureJavaReflectionProvider(), XPP_DRIVER) {
       // only register the converters we need; other converters generate a private access warning in the console on Java9+...
       @Override
@@ -72,6 +146,7 @@ public class XStreamInitializer {
         registerConverter(new ShortConverter(), PRIORITY_NORMAL);
         registerConverter(new BooleanConverter(), PRIORITY_NORMAL);
         registerConverter(new ByteConverter(), PRIORITY_NORMAL);
+        registerConverter(new XStreamCDataConverter(), 1);
         registerConverter(new StringConverter(), PRIORITY_NORMAL);
         registerConverter(new DateConverter(), PRIORITY_NORMAL);
         registerConverter(new CollectionConverter(getMapper()), PRIORITY_NORMAL);
@@ -89,7 +164,9 @@ public class XStreamInitializer {
       "me.chanjar.weixin.**", "cn.binarywang.wx.**", "com.github.binarywang.**"
     }));
     xstream.setClassLoader(Thread.currentThread().getContextClassLoader());
+    if (consumer != null) {
+      consumer.accept(xstream);
+    }
     return xstream;
   }
-
 }

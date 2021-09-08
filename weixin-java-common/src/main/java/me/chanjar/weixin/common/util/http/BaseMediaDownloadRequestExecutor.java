@@ -1,13 +1,13 @@
 package me.chanjar.weixin.common.util.http;
 
-import java.io.File;
-import java.io.IOException;
-
 import me.chanjar.weixin.common.enums.WxType;
 import me.chanjar.weixin.common.error.WxErrorException;
 import me.chanjar.weixin.common.util.http.apache.ApacheMediaDownloadRequestExecutor;
 import me.chanjar.weixin.common.util.http.jodd.JoddHttpMediaDownloadRequestExecutor;
 import me.chanjar.weixin.common.util.http.okhttp.OkHttpMediaDownloadRequestExecutor;
+
+import java.io.File;
+import java.io.IOException;
 
 /**
  * 下载媒体文件请求执行器.

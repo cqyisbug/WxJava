@@ -1,9 +1,6 @@
 package me.chanjar.weixin.qidian.api;
 
-import java.util.Map;
-
 import com.google.gson.JsonObject;
-
 import me.chanjar.weixin.common.bean.WxJsapiSignature;
 import me.chanjar.weixin.common.bean.WxNetCheckResult;
 import me.chanjar.weixin.common.enums.TicketType;
@@ -14,6 +11,8 @@ import me.chanjar.weixin.common.util.http.RequestExecutor;
 import me.chanjar.weixin.common.util.http.RequestHttp;
 import me.chanjar.weixin.qidian.config.WxQidianConfigStorage;
 import me.chanjar.weixin.qidian.enums.WxQidianApiUrl;
+
+import java.util.Map;
 
 /**
  * 腾讯企点API的Service.

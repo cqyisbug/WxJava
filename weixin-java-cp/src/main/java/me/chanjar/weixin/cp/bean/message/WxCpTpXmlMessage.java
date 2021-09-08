@@ -1,9 +1,5 @@
 package me.chanjar.weixin.cp.bean.message;
 
-import java.io.Serializable;
-import java.util.List;
-import java.util.Map;
-
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamConverter;
 import com.thoughtworks.xstream.converters.basic.IntConverter;
@@ -12,8 +8,11 @@ import lombok.extern.slf4j.Slf4j;
 import me.chanjar.weixin.common.util.XmlUtils;
 import me.chanjar.weixin.common.util.xml.IntegerArrayConverter;
 import me.chanjar.weixin.common.util.xml.StringArrayConverter;
-import me.chanjar.weixin.common.util.xml.XStreamCDataConverter;
-import me.chanjar.weixin.cp.util.xml.XStreamTransformer;
+import me.chanjar.weixin.common.util.xml.XmlBeanUtil;
+
+import java.io.Serializable;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 回调推送的message
@@ -33,36 +32,31 @@ public class WxCpTpXmlMessage implements Serializable {
   private Map<String, Object> allFieldsMap;
 
   @XStreamAlias("SuiteId")
-  @XStreamConverter(value = XStreamCDataConverter.class)
   protected String suiteId;
 
   @XStreamAlias("InfoType")
-  @XStreamConverter(value = XStreamCDataConverter.class)
   protected String infoType;
 
   @XStreamAlias("TimeStamp")
-  @XStreamConverter(value = XStreamCDataConverter.class)
   protected String timeStamp;
 
   @XStreamAlias("SuiteTicket")
-  @XStreamConverter(value = XStreamCDataConverter.class)
   protected String suiteTicket;
 
   @XStreamAlias("AuthCode")
-  @XStreamConverter(value = XStreamCDataConverter.class)
   protected String authCode;
 
   @XStreamAlias("AuthCorpId")
-  @XStreamConverter(value = XStreamCDataConverter.class)
   protected String authCorpId;
 
   @XStreamAlias("ChangeType")
-  @XStreamConverter(value = XStreamCDataConverter.class)
   protected String changeType;
 
   @XStreamAlias("UserID")
-  @XStreamConverter(value = XStreamCDataConverter.class)
   protected String userID;
+
+  @XStreamAlias("OpenUserID")
+  protected String openUserID;
 
   @XStreamAlias("Department")
   @XStreamConverter(value = IntegerArrayConverter.class)
@@ -77,11 +71,9 @@ public class WxCpTpXmlMessage implements Serializable {
   protected Integer[] isLeaderInDept;
 
   @XStreamAlias("Mobile")
-  @XStreamConverter(value = XStreamCDataConverter.class)
   protected String mobile;
 
   @XStreamAlias("Position")
-  @XStreamConverter(value = XStreamCDataConverter.class)
   protected String position;
 
   @XStreamAlias("Gender")
@@ -89,35 +81,27 @@ public class WxCpTpXmlMessage implements Serializable {
   protected Integer gender;
 
   @XStreamAlias("Email")
-  @XStreamConverter(value = XStreamCDataConverter.class)
   protected String email;
 
   @XStreamAlias("Status")
-  @XStreamConverter(value = XStreamCDataConverter.class)
   protected String status;
 
   @XStreamAlias("Avatar")
-  @XStreamConverter(value = XStreamCDataConverter.class)
   protected String avatar;
 
   @XStreamAlias("Alias")
-  @XStreamConverter(value = XStreamCDataConverter.class)
   protected String alias;
 
   @XStreamAlias("Telephone")
-  @XStreamConverter(value = XStreamCDataConverter.class)
   protected String telephone;
 
   @XStreamAlias("Id")
-  @XStreamConverter(value = XStreamCDataConverter.class)
   protected String id;
 
   @XStreamAlias("Name")
-  @XStreamConverter(value = XStreamCDataConverter.class)
   protected String name;
 
   @XStreamAlias("ParentId")
-  @XStreamConverter(value = XStreamCDataConverter.class)
   protected String parentId;
 
   @XStreamAlias("Order")
@@ -146,11 +130,9 @@ public class WxCpTpXmlMessage implements Serializable {
 
   //ref: https://work.weixin.qq.com/api/doc/90001/90143/90585
   @XStreamAlias("ServiceCorpId")
-  @XStreamConverter(value = XStreamCDataConverter.class)
   protected String serviceCorpId;
 
   @XStreamAlias("RegisterCode")
-  @XStreamConverter(value = XStreamCDataConverter.class)
   protected String registerCode;
 
   @XStreamAlias("ContactSync")
@@ -160,45 +142,39 @@ public class WxCpTpXmlMessage implements Serializable {
   protected AuthUserInfo authUserInfo;
 
   @XStreamAlias("TemplateId")
-  @XStreamConverter(value = XStreamCDataConverter.class)
   protected String templateId;
 
   @XStreamAlias("CreateTime")
   protected Long createTime;
 
   @XStreamAlias("ToUserName")
-  @XStreamConverter(value = XStreamCDataConverter.class)
   protected String toUserName;
 
   @XStreamAlias("FromUserName")
-  @XStreamConverter(value = XStreamCDataConverter.class)
   protected String fromUserName;
 
   @XStreamAlias("MsgType")
-  @XStreamConverter(value = XStreamCDataConverter.class)
   protected String msgType;
 
   @XStreamAlias("Event")
-  @XStreamConverter(value = XStreamCDataConverter.class)
   protected String event;
 
   @XStreamAlias("BatchJob")
   protected BatchJob batchJob;
 
   @XStreamAlias("ExternalUserID")
-  @XStreamConverter(value = XStreamCDataConverter.class)
   protected String externalUserID;
 
+  @XStreamAlias("State")
+  protected String state;
+
   @XStreamAlias("WelcomeCode")
-  @XStreamConverter(value = XStreamCDataConverter.class)
   protected String welcomeCode;
 
   @XStreamAlias("FromUser")
-  @XStreamConverter(value = XStreamCDataConverter.class)
   protected String fromUser;
 
   @XStreamAlias("Content")
-  @XStreamConverter(value = XStreamCDataConverter.class)
   protected String content;
 
   @XStreamAlias("MsgId")
@@ -208,19 +184,15 @@ public class WxCpTpXmlMessage implements Serializable {
   protected String agentID;
 
   @XStreamAlias("PicUrl")
-  @XStreamConverter(value = XStreamCDataConverter.class)
   protected String picUrl;
 
   @XStreamAlias("MediaId")
-  @XStreamConverter(value = XStreamCDataConverter.class)
   protected String mediaId;
 
   @XStreamAlias("Format")
-  @XStreamConverter(value = XStreamCDataConverter.class)
   private String format;
 
   @XStreamAlias("ThumbMediaId")
-  @XStreamConverter(value = XStreamCDataConverter.class)
   private String thumbMediaId;
 
   @XStreamAlias("Location_X")
@@ -233,23 +205,18 @@ public class WxCpTpXmlMessage implements Serializable {
   private Double scale;
 
   @XStreamAlias("Label")
-  @XStreamConverter(value = XStreamCDataConverter.class)
   private String label;
 
   @XStreamAlias("Title")
-  @XStreamConverter(value = XStreamCDataConverter.class)
   private String title;
 
   @XStreamAlias("Description")
-  @XStreamConverter(value = XStreamCDataConverter.class)
   private String description;
 
   @XStreamAlias("Url")
-  @XStreamConverter(value = XStreamCDataConverter.class)
   private String url;
 
   @XStreamAlias("EventKey")
-  @XStreamConverter(value = XStreamCDataConverter.class)
   private String eventKey;
 
   @XStreamAlias("Latitude")
@@ -262,23 +229,27 @@ public class WxCpTpXmlMessage implements Serializable {
   private Double precision;
 
   @XStreamAlias("AppType")
-  @XStreamConverter(value = XStreamCDataConverter.class)
   private String appType;
 
+  /**
+   * 接替失败的原因, customer_refused-客户拒绝， customer_limit_exceed-接替成员的客户数达到上限
+   */
+  @XStreamAlias("FailReason")
+  private String failReason;
+
   @XStreamAlias("ScanCodeInfo")
-  private WxCpXmlMessage.ScanCodeInfo scanCodeInfo = new WxCpXmlMessage.ScanCodeInfo();
+  private WxCpXmlMessage.ScanCodeInfo scanCodeInfo;
 
   @XStreamAlias("SendPicsInfo")
-  private WxCpXmlMessage.SendPicsInfo sendPicsInfo = new WxCpXmlMessage.SendPicsInfo();
+  private WxCpXmlMessage.SendPicsInfo sendPicsInfo;
 
   @XStreamAlias("SendLocationInfo")
-  private WxCpXmlMessage.SendLocationInfo sendLocationInfo = new WxCpXmlMessage.SendLocationInfo();
+  private WxCpXmlMessage.SendLocationInfo sendLocationInfo;
 
   @XStreamAlias("ApprovalInfo")
   private ApprovalInfo approvalInfo = new ApprovalInfo();
 
   @XStreamAlias("TaskId")
-  @XStreamConverter(value = XStreamCDataConverter.class)
   private String taskId;
 
   @Data
@@ -287,7 +258,6 @@ public class WxCpTpXmlMessage implements Serializable {
     private static final long serialVersionUID = 6031833682211475786L;
 
     @XStreamAlias("AccessToken")
-    @XStreamConverter(value = XStreamCDataConverter.class)
     protected String accessToken;
 
     @XStreamAlias("ExpiresIn")
@@ -297,8 +267,10 @@ public class WxCpTpXmlMessage implements Serializable {
   @Data
   @XStreamAlias("AuthUserInfo")
   public static class AuthUserInfo implements Serializable {
+
+    private static final long serialVersionUID = -2918558288134346848L;
+
     @XStreamAlias("UserId")
-    @XStreamConverter(value = XStreamCDataConverter.class)
     protected String userId;
   }
 
@@ -308,11 +280,9 @@ public class WxCpTpXmlMessage implements Serializable {
     private static final long serialVersionUID = 6031833682211475786L;
 
     @XStreamAlias("JobId")
-    @XStreamConverter(value = XStreamCDataConverter.class)
     protected String JobId;
 
     @XStreamAlias("JobType")
-    @XStreamConverter(value = XStreamCDataConverter.class)
     protected String jobType;
 
     @XStreamAlias("ErrCode")
@@ -320,7 +290,6 @@ public class WxCpTpXmlMessage implements Serializable {
     protected Integer errCode;
 
     @XStreamAlias("ErrMsg")
-    @XStreamConverter(value = XStreamCDataConverter.class)
     protected String errMsg;
   }
 
@@ -416,15 +385,13 @@ public class WxCpTpXmlMessage implements Serializable {
       @XStreamAlias("ItemUserId")
       protected Integer itemUserId;
       @XStreamAlias("ItemImage")
-      protected String  itemImage;
+      protected String itemImage;
     }
   }
 
 
   public static WxCpTpXmlMessage fromXml(String xml) {
-    //修改微信变态的消息内容格式，方便解析
-    //xml = xml.replace("</PicList><PicList>", "");
-    final WxCpTpXmlMessage xmlPackage = XStreamTransformer.fromXml(WxCpTpXmlMessage.class, xml);
+    final WxCpTpXmlMessage xmlPackage = XmlBeanUtil.toBean(xml, WxCpTpXmlMessage.class);
     xmlPackage.setAllFieldsMap(XmlUtils.xml2Map(xml));
     return xmlPackage;
   }

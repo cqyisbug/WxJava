@@ -1,7 +1,8 @@
 package com.github.binarywang.wxpay.bean.request;
 
 import com.google.gson.annotations.SerializedName;
-import lombok.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
