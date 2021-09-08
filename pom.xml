@@ -270,14 +270,14 @@
   </dependencyManagement>
 
   <distributionManagement>
-    <repository>
-      <id>rdc-releases</id>
-      <url>https://packages.aliyun.com/maven/repository/2126317-release-uTV22g/</url>
-    </repository>
     <snapshotRepository>
-      <id>rdc-snapshots</id>
-      <url>https://packages.aliyun.com/maven/repository/2126317-snapshot-YUjU3Z/</url>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
     </snapshotRepository>
+    <repository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+    </repository>
   </distributionManagement>
 
   <profiles>
