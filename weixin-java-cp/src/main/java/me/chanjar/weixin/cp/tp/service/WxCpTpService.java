@@ -24,7 +24,7 @@ public interface WxCpTpService {
    * @param corpId the corp id
    * @return corp api url
    */
-  default String getCorpApiUrl(String uri, String corpId) {
+  default String getCorpApiUrl(String uri, String corpId) throws WxErrorException {
     WxAccessToken accessToken = getCorpAccessToken(corpId);
     uri = getWxCpTpConfigStorage().getApiUrl(uri);
     return uri + ((uri.contains("?") ? "&" : "?")) +

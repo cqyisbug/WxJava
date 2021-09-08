@@ -1,7 +1,6 @@
 package me.chanjar.weixin.cp.config.impl;
 
 import me.chanjar.weixin.common.bean.WxAccessToken;
-import me.chanjar.weixin.common.error.WxErrorException;
 import me.chanjar.weixin.common.error.WxRuntimeException;
 import me.chanjar.weixin.common.util.http.apache.ApacheHttpClientBuilder;
 import me.chanjar.weixin.cp.bean.WxCpProviderToken;
@@ -287,7 +286,7 @@ public class WxCpTpDefaultConfigImpl implements WxCpTpConfigStorage, Serializabl
   public String getPermanentCode(String authCorpId) {
     String code = authCorpPermanentCodeMap.get(authCorpId);
     if (code == null || code.length() == 0) {
-      throw new WxErrorException("获取企业:[" + authCorpId + "]永久授权码失败");
+      throw new WxRuntimeException("获取企业:[" + authCorpId + "]永久授权码失败");
     }
     return code;
   }
@@ -304,7 +303,7 @@ public class WxCpTpDefaultConfigImpl implements WxCpTpConfigStorage, Serializabl
   public Integer getAgentId(String authCorpId) {
     Integer agentId = authCorpAgentIdMap.get(authCorpId);
     if (agentId == null) {
-      throw new WxErrorException("获取企业:[" + authCorpId + "] 应用id失败");
+      throw new WxRuntimeException("获取企业:[" + authCorpId + "] 应用id失败");
     }
     return agentId;
   }

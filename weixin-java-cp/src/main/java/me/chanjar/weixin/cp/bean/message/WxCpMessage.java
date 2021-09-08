@@ -3,7 +3,7 @@ package me.chanjar.weixin.cp.bean.message;
 import com.google.gson.annotations.SerializedName;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
-import me.chanjar.weixin.common.error.WxErrorException;
+import me.chanjar.weixin.common.error.WxRuntimeException;
 import me.chanjar.weixin.cp.util.json.WxCpGsonBuilder;
 import org.apache.commons.lang3.StringUtils;
 
@@ -116,7 +116,7 @@ public abstract class WxCpMessage implements Serializable {
 
   protected void checkTo() {
     if (StringUtils.isAllBlank(getToParty(), getToUser(), getToTag())) {
-      throw new WxErrorException("touser、toparty、totag不能同时为空");
+      throw new WxRuntimeException("touser、toparty、totag不能同时为空");
     }
   }
 

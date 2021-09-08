@@ -240,7 +240,7 @@ public abstract class BaseWxCpTpServiceImpl<H, P> implements WxCpTpService, Requ
     return this.configStorage.getAccessTokenEntity(authCorpId);
   }
 
-  private WxAccessToken getCorpTokenFromApi(String authCorpId, String permanentCode) {
+  private WxAccessToken getCorpTokenFromApi(String authCorpId, String permanentCode) throws WxErrorException {
     JsonObject jsonObject = new JsonObject();
     jsonObject.addProperty("auth_corpid", authCorpId);
     jsonObject.addProperty("permanent_code", permanentCode);

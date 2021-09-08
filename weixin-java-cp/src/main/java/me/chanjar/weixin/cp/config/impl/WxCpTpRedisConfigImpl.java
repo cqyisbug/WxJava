@@ -6,6 +6,7 @@ import lombok.NonNull;
 import lombok.Setter;
 import me.chanjar.weixin.common.bean.WxAccessToken;
 import me.chanjar.weixin.common.error.WxErrorException;
+import me.chanjar.weixin.common.error.WxRuntimeException;
 import me.chanjar.weixin.common.redis.WxRedisOps;
 import me.chanjar.weixin.common.util.http.apache.ApacheHttpClientBuilder;
 import me.chanjar.weixin.cp.bean.WxCpProviderToken;
@@ -230,7 +231,7 @@ public class WxCpTpRedisConfigImpl implements WxCpTpConfigStorage, Serializable 
   public String getPermanentCode(String authCorpId) {
     String code = wxRedisOps.getValue(keyWithPrefix(authCorpId) + permanentCodeKey);
     if (code == null || code.length() == 0) {
-      throw new WxErrorException("获取企业:[" + authCorpId + "]永久授权码失败");
+      throw new WxRuntimeException("获取企业:[" + authCorpId + "]永久授权码失败");
     }
     return code;
   }
@@ -246,7 +247,7 @@ public class WxCpTpRedisConfigImpl implements WxCpTpConfigStorage, Serializable 
     try {
       return Integer.parseInt(agentIdStr);
     } catch (NumberFormatException e) {
-      throw new WxErrorException("获取企业:[" + authCorpId + "] 应用id失败");
+      throw new WxRuntimeException("获取企业:[" + authCorpId + "] 应用id失败");
     }
   }
 
