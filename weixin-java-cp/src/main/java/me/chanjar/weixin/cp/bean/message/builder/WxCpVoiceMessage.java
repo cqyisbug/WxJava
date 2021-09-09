@@ -37,7 +37,7 @@ public class WxCpVoiceMessage extends WxCpMessage {
    * @return the wx cp voice message builder
    */
   public static WxCpVoiceMessageBuilder builder(String toUser, String toParty, String toTag, Integer agentId, Integer safe, Integer enableIdTrans, Integer enableDuplicateCheck, Integer duplicateCheckInterval) {
-    return _builder_().toUser(toUser).toParty(toParty).toTag(toTag).agentId(agentId);
+    return _builder_().toUser(toUser).toParty(toParty).toTag(toTag).agentId(agentId).safe(safe).enableIdTrans(enableIdTrans).enableDuplicateCheck(enableDuplicateCheck).duplicateCheckInterval(duplicateCheckInterval);
   }
 
   /**
@@ -102,7 +102,7 @@ public class WxCpVoiceMessage extends WxCpMessage {
    * @param duplicateCheckInterval 是否重复消息检查的时间间隔，默认1800s，最大不超过4小时
    * @param mediaId                the media id
    */
-  @Builder
+  @Builder(builderMethodName = "_builder_")
   public WxCpVoiceMessage(String toUser, String toParty, String toTag, Integer agentId, Integer safe, Integer enableIdTrans, Integer enableDuplicateCheck, Integer duplicateCheckInterval, String mediaId) {
     setMsgType("voice");
     init(toUser, toParty, toTag, agentId, safe, enableIdTrans, enableDuplicateCheck, duplicateCheckInterval);

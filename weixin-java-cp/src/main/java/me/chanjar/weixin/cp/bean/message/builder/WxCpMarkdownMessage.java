@@ -37,7 +37,7 @@ public class WxCpMarkdownMessage extends WxCpMessage {
    * @return the wx cp markdown message builder
    */
   public static WxCpMarkdownMessageBuilder builder(String toUser, String toParty, String toTag, Integer agentId, Integer safe, Integer enableIdTrans, Integer enableDuplicateCheck, Integer duplicateCheckInterval) {
-    return _builder_().toUser(toUser).toParty(toParty).toTag(toTag).agentId(agentId);
+    return _builder_().toUser(toUser).toParty(toParty).toTag(toTag).agentId(agentId).safe(safe).enableIdTrans(enableIdTrans).enableDuplicateCheck(enableDuplicateCheck).duplicateCheckInterval(duplicateCheckInterval);
   }
 
   /**
