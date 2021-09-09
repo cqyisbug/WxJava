@@ -266,7 +266,7 @@ public class WxCpTpRedisConfigImpl implements WxCpTpConfigStorage, Serializable 
 
     WxAccessToken accessTokenEntity = new WxAccessToken();
     accessTokenEntity.setAccessToken(accessToken);
-    accessTokenEntity.setExpiresIn((int) ((expire - System.currentTimeMillis()) / 1000 + 200));
+    accessTokenEntity.setExpiresIn(Math.toIntExact(expire));
     return accessTokenEntity;
   }
 
